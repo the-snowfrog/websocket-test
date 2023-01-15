@@ -1,0 +1,26 @@
+using System.Net.WebSockets;
+using System.Text;
+using Microsoft.AspNetCore.Mvc;
+
+namespace App.Controllers;
+
+public class WebSocketController : ControllerBase
+{
+    [Route("/ws")]
+    public async Task Get()
+    {
+        if (HttpContext.WebSockets.IsWebSocketRequest)
+        {
+            using var webSocket = await HttpContext.WebSockets.AcceptWebSocketAsync();
+            while (true)
+            {
+                await webSocket.SendAsync(Encoding.ASCII.GetBytes($"Test - {DateTime.Now}"), WebSocketMessageType.Text, true, CancellationToken.None);
+                await Task.Delay(1000);
+            }
+        }
+        else
+        {
+            HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
+        }
+    }
+}
