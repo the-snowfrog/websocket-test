@@ -19,6 +19,6 @@ provider "azurerm" {
 
 module "app" {
   source = "../shared/modules/app"
-  region = "north-europe"
+  region = "northeurope"
 }
 
