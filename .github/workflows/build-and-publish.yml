@@ -33,9 +33,11 @@ jobs:
             ${{ runner.os }}-nuget-
 
       - name: Build
+        working-directory: app
         run: dotnet build --configuration Release
 
       - name: Publish
+        working-directory: app
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
       - name: Upload artifact for deployment job
