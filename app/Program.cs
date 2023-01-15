@@ -10,7 +10,7 @@ var webSocketOptions = new WebSocketOptions
 };
 app.UseWebSockets(webSocketOptions);
 
-app.MapGet("/", (HttpContext context) => String.Concat("wss://", context.Request.Host.ToUriComponent(), context.Request.PathBase.ToUriComponent(), "ws"));
+app.MapGet("/", (HttpContext context) => String.Concat("wss://", context.Request.Host.ToUriComponent(), "/ws"));
 
 app.Use(async (context, next) =>
 {
