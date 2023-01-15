@@ -5,10 +5,10 @@ env:
   DOTNET_VERSION: '7.0'                
 
 on:
+  workflow_dispatch:
   push:
     branches:
-      - main
-  workflow_dispatch:
+      - main  
   paths:
     - 'app/**'
 
