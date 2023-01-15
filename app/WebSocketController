@@ -6,7 +6,7 @@ namespace App.Controllers;
 
 public class WebSocketController : ControllerBase
 {
-    [Route("/ws")]
+    [Route("/wss")]
     public async Task Get()
     {
         if (HttpContext.WebSockets.IsWebSocketRequest)
