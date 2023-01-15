@@ -24,7 +24,17 @@ jobs:
       uses: hashicorp/setup-terraform@v1
 
     - name: Terraform Init
+      working-directory: terraform/azure/north-europe
       run: terraform init
 
     - name: Terraform Apply
+      working-directory: terraform/azure/north-europe
+      run: terraform apply -auto-approve
+
+    - name: Terraform Init
+      working-directory: terraform/azure/west-europe
+      run: terraform init
+
+    - name: Terraform Apply
+      working-directory: terraform/azure/west-europe
       run: terraform apply -auto-approve
