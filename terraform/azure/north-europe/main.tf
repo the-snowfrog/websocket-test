@@ -21,4 +21,3 @@ module "app" {
   source = "../shared/modules/app"
   region = "northeurope"
 }
-

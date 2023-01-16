@@ -32,7 +32,10 @@ jobs:
 
       - name: Terraform Apply
         working-directory: terraform/azure/north-europe
-        run: terraform apply -auto-approve
+        run: |
+          terraform apply -auto-approve
+          hostname = terraform output default_hostname
+          echo "north_europe_hostname=$hostname" >> $GITHUB_OUTPUT
 
       - name: Terraform Init
         working-directory: terraform/azure/west-europe
@@ -40,4 +43,16 @@ jobs:
 
       - name: Terraform Apply
         working-directory: terraform/azure/west-europe
-        run: terraform apply -auto-approve
+        run: |
+          terraform apply -auto-approve
+          hostname = terraform output default_hostname
+          echo "west_europe_hostname=$hostname" >> $GITHUB_OUTPUT
+
+      - name: Terraform Init
+        working-directory: terraform/azure/global
+        run: terraform init
+
+      - name: Terraform Apply
+        working-directory: terraform/azure/global
+        run: |
+          terraform apply -auto-approve -var='north_europe_default_hostname=${{ steps.vars.outputs.north_europe_hostname }}' -var='west_europe_default_hostname=${{ steps.vars.outputs.west_europe_hostname }}'
