@@ -33,6 +33,7 @@ jobs:
         run: terraform init
 
       - name: Terraform Apply
+        id: north
         working-directory: terraform/azure/north-europe
         run: |
           terraform apply -auto-approve
@@ -44,6 +45,7 @@ jobs:
         run: terraform init
 
       - name: Terraform Apply
+        id: west
         working-directory: terraform/azure/west-europe
         run: |
           terraform apply -auto-approve
@@ -57,4 +59,4 @@ jobs:
       - name: Terraform Apply
         working-directory: terraform/azure/global/frontdoor
         run: |
-          terraform apply -auto-approve -var="north_europe_default_hostname=${{ steps.vars.outputs.north_europe_hostname }}" -var="west_europe_default_hostname=${{ steps.vars.outputs.west_europe_hostname }}"
+          terraform apply -auto-approve -var="north_europe_default_hostname=${{ steps.north.outputs.north_europe_hostname }}" -var="west_europe_default_hostname=${{ steps.west.outputs.west_europe_hostname }}"
