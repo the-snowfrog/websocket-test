@@ -57,4 +57,4 @@ jobs:
       - name: Terraform Apply
         working-directory: terraform/azure/global/frontdoor
         run: |
-          terraform apply -auto-approve -var='north_europe_default_hostname=${{ steps.vars.outputs.north_europe_hostname }}' -var='west_europe_default_hostname=${{ steps.vars.outputs.west_europe_hostname }}'
+          terraform apply -auto-approve -var="north_europe_default_hostname=${{ steps.vars.outputs.north_europe_hostname }}" -var="west_europe_default_hostname=${{ steps.vars.outputs.west_europe_hostname }}"
