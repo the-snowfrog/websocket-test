@@ -51,10 +51,10 @@ jobs:
           echo "west_europe_hostname=$west_europe_hostname" >> $GITHUB_OUTPUT
 
       - name: Terraform Init
-        working-directory: terraform/azure/global
+        working-directory: terraform/azure/frontdoor/global
         run: terraform init
 
       - name: Terraform Apply
-        working-directory: terraform/azure/global
+        working-directory: terraform/azure/frontdoor/global
         run: |
           terraform apply -auto-approve -var='north_europe_default_hostname=${{ steps.vars.outputs.north_europe_hostname }}' -var='west_europe_default_hostname=${{ steps.vars.outputs.west_europe_hostname }}'
