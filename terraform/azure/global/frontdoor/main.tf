@@ -3,7 +3,7 @@ terraform {
     resource_group_name  = "west-europe-terraform-group"
     storage_account_name = "westeuropeterraformsa"
     container_name       = "terraform"
-    key                  = "terraform.tfstate"
+    key                  = "frontdoor.tfstate"
   }
   required_providers {
     azurerm = {
