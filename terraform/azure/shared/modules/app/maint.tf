@@ -25,4 +25,8 @@ resource "azurerm_linux_web_app" "app" {
       dotnet_version = "7.0"
     }  
   }
+
+  app_settings = {
+    "Region" = var.region
+  }
 }
