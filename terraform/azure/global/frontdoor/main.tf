@@ -23,9 +23,10 @@ resource "azurerm_resource_group" "my_front_door" {
 }
 
 resource "azurerm_cdn_frontdoor_profile" "my_front_door" {
-  name                = "frontdoor-profile"
-  resource_group_name = azurerm_resource_group.my_front_door.name
-  sku_name            = "Standard_AzureFrontDoor"
+  name                     = "frontdoor-profile"
+  resource_group_name      = azurerm_resource_group.my_front_door.name
+  sku_name                 = "Standard_AzureFrontDoor"
+  response_timeout_seconds = 30
 }
 
 resource "azurerm_cdn_frontdoor_endpoint" "my_endpoint" {
