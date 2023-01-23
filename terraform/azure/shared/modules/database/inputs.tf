@@ -1,3 +1,7 @@
+variable "region" {
+  type        = string
+  description = "Azure region to deploy resources to"
+}
 variable "database_password" {
   type        = string
   description = "Password for the database"
