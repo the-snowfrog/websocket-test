@@ -22,7 +22,7 @@ module "app" {
   region = "northeurope"
 }
 
-module "databse" {
+module "database" {
   source = "../shared/modules/database"
   region = "northeurope"
   database_password = var.database_password
