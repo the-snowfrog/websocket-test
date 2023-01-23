@@ -28,6 +28,8 @@ resource "azurerm_postgresql_server" "database" {
 }
 
 resource "azurerm_postgresql_database" "database" {
+  count = var.create_mode == "Default" ? 1 : 0
+
   name                = "${var.region}-database"
   charset             = "UTF8"
   collation           = "English_United States.1252"
