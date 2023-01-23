@@ -39,6 +39,8 @@ jobs:
           terraform apply -auto-approve
           north_europe_hostname=$(terraform output default_hostname)
           echo "north_europe_hostname=$north_europe_hostname" >> $GITHUB_OUTPUT
+          north_europe_database_server_id=$(terraform output database_server_id)
+          echo "north_europe_database_server_id=$north_europe_database_server_id" >> $GITHUB_OUTPUT
 
       - name: Terraform Init
         working-directory: terraform/azure/west-europe
@@ -48,7 +50,7 @@ jobs:
         id: west
         working-directory: terraform/azure/west-europe
         run: |
-          terraform apply -auto-approve
+          terraform apply -auto-approve -var="primary_database_server_id=${{ steps.north.outputs.north_europe_database_server_id }}"
           west_europe_hostname=$(terraform output default_hostname)
           echo "west_europe_hostname=$west_europe_hostname" >> $GITHUB_OUTPUT
 

@@ -21,3 +21,10 @@ module "app" {
   source = "../shared/modules/app"
   region = "northeurope"
 }
+
+module "databse" {
+  source = "../shared/modules/database"
+  region = "northeurope"
+  database_password = var.database_password
+  create_mode = "Default"
+}
