@@ -36,3 +36,11 @@ resource "azurerm_postgresql_database" "database" {
   resource_group_name = azurerm_resource_group.database.name
   server_name         = azurerm_postgresql_server.database.name
 }
+
+resource "azurerm_postgresql_firewall_rule" "database" {
+  name                = "HomeOffice"
+  resource_group_name = azurerm_resource_group.database.name
+  server_name         = azurerm_postgresql_server.database.name
+  start_ip_address    = "92.206.56.211"
+  end_ip_address      = "92.206.56.211"
+}
